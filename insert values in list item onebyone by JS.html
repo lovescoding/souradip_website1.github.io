@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert values in list item onebyone by JS</title>
+    <style>*{margin:0;padding:0;}
+
+
+p{
+    display: inline-block;
+    color:red;
+}
+
+a:hover{
+    transform:  rotateZ(0deg) scale(1.5);
+}
+      a{
+          margin-left:25px;
+          text-decoration: none;
+         display: inline-block;
+          width:60px;
+          background: darkblue;
+          color:white;
+          transform:  rotateZ(20deg);
+          cursor: pointer;
+          text-align: center;
+          transition: 0.5s;
+          animation: animate 2s linear infinite;
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+      } 
+@keyframes animate{
+    20%,50%{
+        background: cyan;
+    }
+    60%,80%{
+        background: yellow;
+    }
+    80%,10%{
+        background: deeppink;
+    }
+}
+button{
+    background: black;
+    width:max-content;
+    border:none;
+color:white;
+cursor: pointer;
+padding: 2px;
+}
+
+
+
+div{
+    width:500px;
+    margin-top:20px;
+    margin-left:50px;
+}
+h2{
+    display: block;
+    margin-top:20px;
+    margin-left:50px;
+    text-decoration: underline;
+    color:blue;
+
+}
+input{
+           margin-left: 20px;
+           padding: 5px;
+        }
+        label{
+            width:80px;
+            display: inline-block;
+        }
+        
+        table{
+            
+          display: block;
+            width:90%;
+            height:50px;
+            margin-top:20px;
+            margin-left:50px; 
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            box-shadow: 2px 2p x5px rgba(0,0,0,0.2);
+        }
+        table th{
+            background:linear-gradient(25deg,dodgerblue,deepskyblue);
+            box-shadow: 2px 2p x5px rgba(0,0,0,0.2);
+            width:200px;
+            padding: 5px;
+            color:white;
+             }
+        
+        table td{
+            
+            text-align: center;
+            
+        }
+        table tr{
+            width:100%;
+        }
+        </style>
+</head>
+<body>
+    <div>
+<p>*</p><label id="todo">TODO: &nbsp;</label><input type="text" placeholder="Enter Your Work" required><br><br>
+<p>*</p><label>Time Slot: &nbsp;</label><input id="time" type="text" placeholder="Enter Time Slot" required>
+
+<a onclick="fun();">Enter</a>
+
+</div>
+<h2>List Items To Do</h2>
+<table >
+<tr>
+    <th>Serial No</th>
+    <th>Todo Items</th>
+    <th>Time Slot</th>
+    <th>Status</th>
+    <th>Change Status</th>
+    <th>Remove</th>
+</tr>
+<table>
+
+
+<div class="footer"></div>
+<script>
+
+let count=1
+let colors=['aliceblue','cyan','deepskyblue','mediumspringgreen','pink','yellow','white','cornsilk',' mediumturquoise']
+function fun()
+{
+let mylist=document.querySelector('table')
+let input=document.querySelector('input')
+let inputvalue=document.querySelector('input').value
+let time=document.getElementById('time')
+let timevalue=document.getElementById('time').value
+let button=document.querySelector('button')
+let label=document.getElementById('todo')
+
+if(inputvalue=="" ||  timevalue=="")
+{
+alert('Please Fill Up Again')
+
+}
+
+else{
+    let create=document.createElement('tr')
+    let td1=document.createElement('td')
+    td1.textContent=count
+   
+    let td2=document.createElement('td')
+    td2.textContent=inputvalue
+   
+
+    let td3=document.createElement('td')
+    td3.textContent=timevalue
+
+    let td4=document.createElement('td')
+    td4.textContent="Not Completed"
+
+    let td5=document.createElement('td')
+    let td6=document.createElement('td')
+   
+    
+    let buttontag=document.createElement('button')
+    buttontag.innerText="Change"
+    
+    let removetag=document.createElement('button')
+    removetag.innerText="Remove"
+    
+    td5.appendChild(buttontag)
+    td6.appendChild(removetag)
+    buttontag.addEventListener('click',function(){
+        if(td4.textContent=='Not Completed')
+        {
+        td4.textContent='Completed'
+        
+        }
+        else
+        td4.textContent='Not Completed'
+    });
+    
+ removetag.addEventListener('click',function()
+ {
+     let y=confirm("Do you want to Remove?")
+     if(y==true)
+     {
+        if(td4.textContent=='Not Completed')
+        {
+           
+        }else{
+    create.style.display="none"
+
+     }}
+ });
+
+    create.appendChild(td1)
+    create.appendChild(td2)
+    create.appendChild(td3)
+    create.appendChild(td4)
+    create.appendChild(td5)
+    create.appendChild(td6)
+    
+    
+    create.style.background=colors[Math.floor(Math.random()*colors.length)]
+    //colors[Math.floor(Math.random() *colors.length)]
+    mylist.appendChild(create)
+label.textContent='Add More?'
+count++;
+
+
+
+
+/*
+let createbutton=document.createElement('button')
+createbutton.textContent="Souradip"
+createdli.appendChild(createbutton)
+*/
+
+}
+}
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
